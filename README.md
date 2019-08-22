@@ -1,6 +1,10 @@
 # zkdex-utils
 zkdex-utils is a utility library for zk-dex
 
+# Spec
+
+Account : https://github.com/Onther-Tech/zk-dex/issues/38
+
 # Install
 ```
 $ npm install zkdex-utils
