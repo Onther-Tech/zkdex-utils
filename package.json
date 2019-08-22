@@ -1,7 +1,12 @@
 {
   "name": "zkdex-utils",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.9.0",
+  "description": "zkdex utility library",
+  "homepage" : "https://github.com/Onther-Tech/zkdex-utils",
+  "bugs" : {
+    "url" : "https://github.com/Onther-Tech/zkdex-utils/issues",
+    "email" : "kevin.j@onther.io"
+  },
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
@@ -10,12 +15,11 @@
     "type": "git",
     "url": "git+https://github.com/Onther-Tech/zkdex-utils.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Kevin(SoonHyeong) Jeong",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Onther-Tech/zkdex-utils/issues"
   },
-  "homepage": "https://github.com/Onther-Tech/zkdex-utils#readme",
   "dependencies": {
     "babyjubjub": "^1.0.2",
     "bn.js": "^5.0.0"
