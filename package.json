@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Onther-Tech/zkdex-utils#readme",
   "dependencies": {
-    "babyjubjub": "^1.0.2"
+    "babyjubjub": "^1.0.2",
+    "bn.js": "^5.0.0"
   },
   "devDependencies": {
     "bignumber.js": "^9.0.0",

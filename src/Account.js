@@ -51,9 +51,9 @@ class Account{
     return this.sk.s.n.toFixed();
   }
 
-  getNoteAddress() {
-
-  }
+  // getNoteAddress() {
+  //
+  // }
 
   dump(){
     return {

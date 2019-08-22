@@ -9,7 +9,7 @@ $ npm install zkdex-utils
 # Usage
 
 ## Account
-```
+```javascript
 const { Account } = require('zkdex-utils');
 
 //Get random Account
@@ -34,5 +34,6 @@ console.log(account2.dump());
 ```
 
 ## Note
-```
+```javascript
+
 ```
