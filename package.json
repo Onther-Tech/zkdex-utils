@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,11 @@
   "homepage": "https://github.com/Onther-Tech/zkdex-utils#readme",
   "dependencies": {
     "babyjubjub": "^1.0.2"
+  },
+  "devDependencies": {
+    "bignumber.js": "^9.0.0",
+    "chai": "^4.2.0",
+    "chai-bignumber": "^3.0.0",
+    "mocha": "^6.2.0"
   }
 }
