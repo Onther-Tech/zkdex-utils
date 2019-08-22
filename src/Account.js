@@ -20,7 +20,7 @@ class Account{
   }
 
   static create(privKey) {
-    return new Account(sk);
+    return new Account(privKey);
   }
 
   static createRandom(){
