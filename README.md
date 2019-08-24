@@ -41,47 +41,38 @@ const { utils } = require('zkdex-utils');
 let hexValue = 'd16501b93aacfb4cb52413d87646f9ec45ecae7a';
 let intValue = '1195431596509751261413288945812563671344183291514';
 
-//hexToInt()
-//return : '1195431596509751261413288945812563671344183291514'
 utils.hexToInt(hexValue);
+//return : '1195431596509751261413288945812563671344183291514'
 
-//pad0andSplit()
+utils.pad0andSplit(hexValue);
 //return :
 //[ '000000000000000000000000d16501b9',
 //  '3aacfb4cb52413d87646f9ec45ecae7a' ]
-utils.pad0andSplit(hexValue);
 
-//pad0andIntSplit()
+utils.pad0andSplit(hexValue);
 //return : [ '3513057721', '77993395777404380459046375406321839738' ]
-utils.pad0andSplit(hexValue);
 
-//toHashed()
-//return : 'ccb2f234308cae2c01e2277785da7ea320d5bab2c363e09a18aaeb7f5221a689'
 utils.toHashed(hexValue);
+//return : 'ccb2f234308cae2c01e2277785da7ea320d5bab2c363e09a18aaeb7f5221a689'
 
-//toIntHashed()
-//return : '92587991518162908190149129956315054014557365764270414047919968238243684656777'
 utils.toIntHashed(hexValue);
+//return : '92587991518162908190149129956315054014557365764270414047919968238243684656777'
 
-//toSplittedHashed()
+utils.toSplittedHashed(hexValue);
 //return :
 //[ 'ccb2f234308cae2c01e2277785da7ea3',
 //  '20d5bab2c363e09a18aaeb7f5221a689' ]
-utils.toSplittedHashed(hexValue);
 
-//toSplittedIntHashed()
+utils.toSplittedIntHashed(hexValue);
 //return :
 //[ '272091652458955924425974303020698730147',
 //  '43645041787254754191522146263106692745' ]
-utils.toSplittedIntHashed(hexValue);
 
-//intToHex()
-//return : '1195431596509751261413288945812563671344183291514'
 utils.intToHex(intValue);
+//return : '1195431596509751261413288945812563671344183291514'
 
-//zComputeWitnessCommand()
-//return : './zokrates compute-witness -a 10 11 12'
 utils.zComputeWitnessCommand(['a','b','c']);
+//return : './zokrates compute-witness -a 10 11 12'
 ```
 
 ## Note
