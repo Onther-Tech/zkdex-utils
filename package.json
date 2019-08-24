@@ -1,11 +1,10 @@
 {
   "name": "zkdex-utils",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "zkdex utility library",
-  "homepage" : "https://github.com/Onther-Tech/zkdex-utils",
-  "bugs" : {
-    "url" : "https://github.com/Onther-Tech/zkdex-utils/issues",
-    "email" : "kevin.j@onther.io"
+  "homepage": "https://github.com/Onther-Tech/zkdex-utils",
+  "bugs": {
+    "url": "https://github.com/Onther-Tech/zkdex-utils/issues"
   },
   "main": "index.js",
   "scripts": {
@@ -17,12 +16,10 @@
   },
   "author": "Kevin(SoonHyeong) Jeong",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Onther-Tech/zkdex-utils/issues"
-  },
   "dependencies": {
     "babyjubjub": "^1.0.2",
-    "bn.js": "^5.0.0"
+    "bn.js": "^5.0.0",
+    "bs58": "^4.0.1"
   },
   "devDependencies": {
     "bignumber.js": "^9.0.0",

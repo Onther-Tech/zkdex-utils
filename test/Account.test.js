@@ -18,11 +18,17 @@ describe('# Account Test', () => {
     let expectedZK = account.dump().zkAddress;
     rZkAddress.should.be.equal(expectedZK);
   });
-  it('#Account.getCIF()', () => {
+  it('#Account.getZkAddressBase58()', () => {
     let account = Account.createRandom();
-    let rCIF = account.getCIF();
-    let expectedCIF = account.dump().cif;
-    rCIF.should.be.equal(expectedCIF);
+    let rBase58 = account.getZkAddressBase58();
+    let expectedBase58 = account.dump().zkAddressBase58;
+    rBase58.should.be.equal(expectedBase58);
+  });
+  it('#Account.getZkAddressFormat()', () => {
+    let account = Account.createRandom();
+    let rAddressFormat = account.getZkAddressFormat();
+    let expectedAddressFormat = account.dump().zkAddressFormat;
+    rAddressFormat.should.be.equal(expectedAddressFormat);
   });
   it('#Account.getPubkeyPoint()', () => {
     let account = Account.createRandom();

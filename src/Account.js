@@ -1,6 +1,7 @@
 const { PublicKey, PrivateKey } = require('babyjubjub');
 const BN = require('bn.js');
 const crypto = require('crypto');
+const bs58 = require('bs58');
 
 class Account{
 
@@ -13,8 +14,9 @@ class Account{
       this.pubkeyPoint = this.pubkey.p;
       this.pubkeyHexPoint = Account._pointToHex(this.pubkeyPoint);
       this.digestPubkey = Account._toHashed(this.pubkeyHexPoint.x + this.pubkeyHexPoint.y);
-      this.cif = this.digestPubkey.slice(24);
-      this.zkAddress = "zk" + this.cif;
+      this.zkAddress = this.digestPubkey.slice(24);
+      this.zkAddressBase58 = Account._hexToBase58(this.zkAddress);
+      this.zkAddressFormat = "zk" + this.zkAddress;
     }
 
   }
@@ -32,8 +34,12 @@ class Account{
     return this.zkAddress;
   }
 
-  getCIF() {
-    return this.cif;
+  getZkAddressBase58() {
+    return this.zkAddressBase58;
+  }
+
+  getZkAddressFormat() {
+    return this.zkAddressFormat;
   }
 
   getPubkeyPoint() {
@@ -64,7 +70,8 @@ class Account{
       },
       pubkeyHexstring : this.pubkeyHexPoint.x + this.pubkeyHexPoint.y,
       digestedPubkey : this.digestPubkey,
-      cif : this.cif,
+      zkAddressBase58 : this.zkAddressBase58,
+      zkAddressFormat : this.zkAddressFormat,
       zkAddress: this.zkAddress
     }
   }
@@ -83,6 +90,12 @@ class Account{
     const digest = crypto.createHash('sha256').update(buf).digest('hex');
     // console.log('digest', digest);
     return digest;
+  }
+
+  static _hexToBase58(hexValue){
+    const bytes = Buffer.from(hexValue, 'hex');
+    const address = bs58.encode(bytes);
+    return address;
   }
 }
 
