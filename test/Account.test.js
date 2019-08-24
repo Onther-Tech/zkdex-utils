@@ -4,7 +4,7 @@ const chai = require('chai');
 chai.should();
 chai.use(require('chai-bignumber')());
 
-describe('# Account Test', () => {
+describe('# Account.js Test', () => {
   it('#Account.createRandom(),create()', () => {
     let account = Account.createRandom();
     let resultSK = account.dump().sk;
