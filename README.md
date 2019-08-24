@@ -3,7 +3,7 @@ zkdex-utils is a utility library for zk-dex
 
 # Spec
 
-Account : https://github.com/Onther-Tech/zk-dex/issues/38
+- Account : https://github.com/Onther-Tech/ZKDIPs/blob/master/ZKDIPs/zkdip-2.md
 
 # Install
 ```
@@ -26,7 +26,7 @@ console.log(account.dump());
 //   pubkeyHexstring: '11fbe4e409340feb598b9ba8057c50222367573f7e03d5d390244198c99f2c0c24cc86a8c45f16060a2b7ec6aa0917ccb69238f1485e2e5f7955447b646cb43f',
 //   digestedPubkey: 'fc6227abd30e809e1fa66898c85a67c6508b15bde961656da11b0f27821fadd1',
 //   zkAddressBase58: '3ntnZBQPzVwMosKct6MSPX9opVrG',
-//   zkAddressFormat: 'zkc85a67c6508b15bde961656da11b0f27821fadd1',
+//   zkAddressFormat: 'zk3ntnZBQPzVwMosKct6MSPX9opVrG',
 //   zkAddress: 'c85a67c6508b15bde961656da11b0f27821fadd1' }
 
 //Create account based on sk = '20778773223370278579726443807976762714'

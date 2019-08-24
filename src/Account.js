@@ -16,7 +16,7 @@ class Account{
       this.digestPubkey = Account._toHashed(this.pubkeyHexPoint.x + this.pubkeyHexPoint.y);
       this.zkAddress = this.digestPubkey.slice(24);
       this.zkAddressBase58 = Account._hexToBase58(this.zkAddress);
-      this.zkAddressFormat = "zk" + this.zkAddress;
+      this.zkAddressFormat = "zk" + this.zkAddressBase58;
     }
 
   }
