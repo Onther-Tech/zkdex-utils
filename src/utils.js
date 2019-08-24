@@ -1,6 +1,7 @@
 const BN = require('bn.js');
 const BigNumber = require('bignumber.js');
 
+const crypto = require('crypto');
 const assert = require('assert');
 
 class utils{
@@ -60,12 +61,12 @@ class utils{
 
   //sha256 digested hex to splitted = [128bit, 128bit], Integer format.
   static toSplittedIntHashed(encodedValue){
-    let splitted = toSplittedHashed(encodedValue);
+    let splitted = utils.toSplittedHashed(encodedValue);
     return splitted.map(x => utils.hexToInt(x));
   }
 
   //Int string to something
-  static IntToHex(intString){
+  static intToHex(intString){
     return new BigNumber(intString).toString(16);
   }
 }
