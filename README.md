@@ -78,6 +78,10 @@ utils.toSplittedIntHashed(hexValue);
 //intToHex()
 //return : '1195431596509751261413288945812563671344183291514'
 utils.intToHex(intValue);
+
+//zComputeWitnessCommand()
+//return : './zokrates compute-witness -a 10 11 12'
+utils.zComputeWitnessCommand(['a','b','c']);
 ```
 
 ## Note

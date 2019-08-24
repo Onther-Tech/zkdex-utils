@@ -62,4 +62,10 @@ describe('# utils.js Test', () => {
     let result = utils.intToHex(intValue);
     result.should.be.equal(expected);
   });
+  it('zComputeWitnessCommand() test', () => {
+    let inputs = ["a","b","c"];
+    let expected = './zokrates compute-witness -a 10 11 12';
+    let result = utils.zComputeWitnessCommand(inputs);
+    result.should.be.equal(expected);
+  });
 })
