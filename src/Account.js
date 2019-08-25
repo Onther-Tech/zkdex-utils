@@ -57,6 +57,15 @@ class Account{
     return this.sk.s.n.toFixed();
   }
 
+  isDerivedFrom(sk){
+    let privKey = new PrivateKey(sk).s.n.toFixed();
+    if(privKey === this.sk.s.n.toFixed()){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // getNoteAddress() {
   //
   // }

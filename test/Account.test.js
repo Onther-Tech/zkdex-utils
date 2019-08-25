@@ -51,4 +51,10 @@ describe('# Account.js Test', () => {
     let expectedSK = account.dump().sk;
     rSK.should.be.equal(expectedSK);
   });
+  it('#Account.isDerivedFrom()', () => {
+    let account = Account.createRandom()
+    let sk = account.getPrivKey();
+    let result = account.isDerivedFrom(sk);
+    result.should.be.equal(true);
+  });
 })
