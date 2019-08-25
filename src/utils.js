@@ -12,8 +12,23 @@ class utils{
     return new BN(hexstring, 16).toString(10);
   }
 
+  static marshal(str) {
+    if (str.slice(0, 2) === '0x') return str;
+    return '0x'.concat(str);
+  }
+
+  static unmarshal(str) {
+    if (str.slice(0, 2) === '0x') return str.slice(2);
+    return str;
+  }
+
+  static delLeftPad(str){
+    return utils.unmarshal(str).replace(/^0+/, '');
+  }
+
   //targetHex < 256 bit to [128bit, 128bit], 0 padded hex string.
-  static pad0andSplit(targetHex){
+  static pad0andSplit(targetH){
+    let targetHex = utils.unmarshal(targetH);
     assert(targetHex.length < 64);
     let splittedData;
     const targetLen = targetHex.length;
@@ -40,7 +55,7 @@ class utils{
 
   //hex to sha256 digested hex.
   static toHashed(encodedValue){
-    const buf = Buffer.from(encodedValue, 'hex');
+    const buf = Buffer.from(utils.unmarshal(encodedValue), 'hex');
     const digest = crypto.createHash('sha256').update(buf).digest('hex');
     // console.log('digest', digest);
     return digest;
@@ -53,7 +68,8 @@ class utils{
   }
 
   //sha256 digested hex to splitted = [128bit, 128bit], hex format.
-  static toSplittedHashed(encodedValue){
+  static toSplittedHashed(encodedV){
+    let encodedValue = utils.unmarshal(encodedV);
     const buf = Buffer.from(encodedValue, 'hex');
     const digest = crypto.createHash('sha256').update(buf).digest('hex');
     let splitted = [digest.slice(0, 32), digest.slice(32)];
@@ -86,7 +102,8 @@ class utils{
 
   //address related
 
-  static encodeBase58(hexString) {
+  static encodeBase58(hexStr) {
+    let hexString = utils.unmarshal(hexStr);
     let bytes = Buffer.from(hexString, 'hex');
     let address = bs58.encode(bytes);
     return address;
@@ -103,7 +120,8 @@ class utils{
     return utils.decodeBase58(zkSliced);
   }
 
-  static addressToFormat(address){
+  static addressToFormat(addrs){
+    let address = utils.unmarshal(addrs);
     assert.ok(address.length == 40);
     let encoded = utils.encodeBase58(address);
     return "zk" + encoded;

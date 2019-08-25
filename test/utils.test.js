@@ -12,6 +12,24 @@ describe('# utils.js Test', () => {
     let result = utils.hexToInt(hexValue);
     result.should.be.equal(expected);
   });
+  it('marshal() test', () => {
+    let hexValue = '000000000000000000000000d16501b9';
+    let expected = '0x000000000000000000000000d16501b9';
+    let result = utils.marshal(hexValue);
+    result.should.be.equal(expected);
+  });
+  it('unmarshal() test', () => {
+    let hexValue = '0x000000000000000000000000d16501b9';
+    let expected = '000000000000000000000000d16501b9';
+    let result = utils.unmarshal(hexValue);
+    result.should.be.equal(expected);
+  });
+  it('delLeftPad() test', () => {
+    let hexValue = '0x000000000000000000000000d16501b9';
+    let expected = 'd16501b9';
+    let result = utils.delLeftPad(hexValue);
+    result.should.be.equal(expected);
+  });
   it('pad0andSplit() test', () => {
     let hexValue = 'd16501b93aacfb4cb52413d87646f9ec45ecae7a';
     let expected0 = '000000000000000000000000d16501b9';
