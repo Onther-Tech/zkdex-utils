@@ -86,15 +86,15 @@ class Account{
   }
 
   static _toHashed(encodedValue){
-    const buf = Buffer.from(encodedValue, 'hex');
-    const digest = crypto.createHash('sha256').update(buf).digest('hex');
+    let buf = Buffer.from(encodedValue, 'hex');
+    let digest = crypto.createHash('sha256').update(buf).digest('hex');
     // console.log('digest', digest);
     return digest;
   }
 
   static _hexToBase58(hexValue){
-    const bytes = Buffer.from(hexValue, 'hex');
-    const address = bs58.encode(bytes);
+    let bytes = Buffer.from(hexValue, 'hex');
+    let address = bs58.encode(bytes);
     return address;
   }
 }

@@ -73,6 +73,18 @@ utils.intToHex(intValue);
 
 utils.zComputeWitnessCommand(['a','b','c']);
 //return : './zokrates compute-witness -a 10 11 12'
+
+utils.encodeBase58('3c69e1b7c4a462c78f1c69d9dfdb866439f6c401');
+//return : 'qpMYvgboxV2bP6P3nDu1JTekjaQ'
+
+utils.decodeBase58('qpMYvgboxV2bP6P3nDu1JTekjaQ');
+//return : '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401'
+
+utils.formatToAddress('zkqpMYvgboxV2bP6P3nDu1JTekjaQ');
+//return : '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401'
+
+utils.addressToFormat('3c69e1b7c4a462c78f1c69d9dfdb866439f6c401');
+//return : 'zkqpMYvgboxV2bP6P3nDu1JTekjaQ'
 ```
 
 ## Note

@@ -68,4 +68,28 @@ describe('# utils.js Test', () => {
     let result = utils.zComputeWitnessCommand(inputs);
     result.should.be.equal(expected);
   });
+  it('encodeBase58() test', () => {
+    let hexValue = '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401';
+    let expected = 'qpMYvgboxV2bP6P3nDu1JTekjaQ';
+    let result = utils.encodeBase58(hexValue);
+    result.should.be.equal(expected);
+  });
+  it('decodeBase58() test', () => {
+    let encoded = 'qpMYvgboxV2bP6P3nDu1JTekjaQ';
+    let expected = '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401';
+    let result = utils.decodeBase58(encoded);
+    result.should.be.equal(expected);
+  });
+  it('formatToAddress() test', () => {
+    let format = 'zkqpMYvgboxV2bP6P3nDu1JTekjaQ';
+    let expected = '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401';
+    let result = utils.formatToAddress(format);
+    result.should.be.equal(expected);
+  });
+  it('addressToFormat() test', () => {
+    let address = '3c69e1b7c4a462c78f1c69d9dfdb866439f6c401';
+    let expected = 'zkqpMYvgboxV2bP6P3nDu1JTekjaQ';
+    let result = utils.addressToFormat(address);
+    result.should.be.equal(expected);
+  });
 })

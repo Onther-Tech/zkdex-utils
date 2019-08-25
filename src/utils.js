@@ -1,6 +1,7 @@
 const BN = require('bn.js');
 const BigNumber = require('bignumber.js');
 
+const bs58 = require('bs58');
 const crypto = require('crypto');
 const assert = require('assert');
 
@@ -82,6 +83,32 @@ class utils{
     // console.log(cmd);
     return cmd.slice(0, -1);
   }
+
+  //address related
+
+  static encodeBase58(hexString) {
+    let bytes = Buffer.from(hexString, 'hex');
+    let address = bs58.encode(bytes);
+    return address;
+  }
+
+  static decodeBase58(base58String) {
+    let bytes = bs58.decode(base58String);
+    return bytes.toString('hex');
+  }
+
+  static formatToAddress(formatAddress) {
+    assert.ok(formatAddress.startsWith("zk"));
+    let zkSliced = formatAddress.slice(2);
+    return utils.decodeBase58(zkSliced);
+  }
+
+  static addressToFormat(address){
+    assert.ok(address.length == 40);
+    let encoded = utils.encodeBase58(address);
+    return "zk" + encoded;
+  }
+
 }
 
 module.exports = {
