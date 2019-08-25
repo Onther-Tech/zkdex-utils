@@ -35,8 +35,8 @@ class Note{
 
   getNoteHash() {
     let target = this.owner+this.value+this.type+this.viewKey+this.salt;
-    console.log("target length : ", target.length);
-    console.log("hash target: ", target);
+    // console.log("target length : ", target.length);
+    // console.log("hash target: ", target);
     let noteHash = utils.toHashed(target);
     return noteHash;
   }
