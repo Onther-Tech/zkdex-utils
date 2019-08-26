@@ -19,7 +19,8 @@
   "dependencies": {
     "babyjubjub": "^1.0.2",
     "bn.js": "^5.0.0",
-    "bs58": "^4.0.1"
+    "bs58": "^4.0.1",
+    "web3-utils": "^1.2.1"
   },
   "devDependencies": {
     "bignumber.js": "^9.0.0",

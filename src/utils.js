@@ -1,6 +1,6 @@
 const BN = require('bn.js');
 const BigNumber = require('bignumber.js');
-
+const Web3Utils = require('web3-utils');
 const bs58 = require('bs58');
 const crypto = require('crypto');
 const assert = require('assert');
@@ -29,20 +29,11 @@ class utils{
   //targetHex < 256 bit to [128bit, 128bit], 0 padded hex string.
   static pad0andSplit(targetH){
     let targetHex = utils.unmarshal(targetH);
-    assert(targetHex.length < 64);
-    let splittedData;
-    const targetLen = targetHex.length;
-    const remainLen = 64 - targetLen;
-
-    if (targetHex == '0') {
-      splittedData = ['0'.repeat(32), '0'.repeat(32)];
-    } else if (targetLen <= 32) {
-      splittedData = ['0'.repeat(32), '0'.repeat(32 - targetLen).concat(targetHex.slice(0, 32))];
-    } else if (targetLen > 32 && targetLen <= 64) {
-      splittedData = ['0'.repeat(remainLen).concat(targetHex.slice(0, 32 - remainLen)), targetHex.slice(32 - remainLen)];
-    } else {
-      splittedData = [targetHex.slice(0, 32), targetHex.slice(32)];
-    }
+    let paddedTarget = Web3Utils.padLeft(targetHex, 64);
+    let splittedData = [
+      paddedTarget.slice(0, 32),
+      paddedTarget.slice(32)
+    ];
 
     return splittedData;
   }
