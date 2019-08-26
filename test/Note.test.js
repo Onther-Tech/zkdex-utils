@@ -57,7 +57,9 @@ describe('# Note.js Test', () => {
   it('#encrypt(), decrypt() test', () => {
     let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
     let encData = note.encrypt("abc");
+    // console.log(encData);
     let decNote = Note.decrypt(encData, "abc");
+    // console.log(decNote);
     note.owner.should.be.equal(decNote.owner);
   });
   it('#isSmart() test', () => {
@@ -81,18 +83,21 @@ describe('# Note.js Test', () => {
   it('#toString() test', () => {
     let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
     let result = JSON.parse(note.toString()).owner;
+    console.log(note.toString());
     let expected = note.owner;
     result.should.be.equal(expected);
   });
   it('#getNoteParamsForCircuit() test', () => {
     let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
     let resultType = note.getNoteParamsForCircuit()[4];
+    console.log(note.getNoteParamsForCircuit());
     let expected = Web3Utils.padLeft(resultType, 32);
     resultType.should.be.equal(expected);
   });
   it('#getNoteParamsPadded() test', () => {
     let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
     let resultOwner = note.getNoteParamsPadded()[0];
+    console.log(note.getNoteParamsPadded());
     let expected = note.owner;
     resultOwner.should.be.equal(expected);
   });
