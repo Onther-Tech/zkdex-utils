@@ -82,6 +82,7 @@ class Note{
   }
 
   //Return : [owner1, owner2, value1, value2, type, viewKey1, viewKey2, salt]
+  //TODO : NoteHash should included
   getNoteParamsForCircuit() {
     let sOwner = utils.pad0andSplit(this.owner);
     let sValue = utils.pad0andSplit(this.value);
@@ -92,7 +93,7 @@ class Note{
 
   //Return : [NoteHash, Value, Type, viewKey, salt], left 0 padded
   getNoteParamsPadded(){
-    return [this.getNoteHash()].concat(
+    return [this.owner].concat(
       this.value,
       this.type,
       this.viewKey,
@@ -102,9 +103,9 @@ class Note{
 
   //Return : [NoteHash, Value, Type, viewKey, salt], no padded
   //TODO : if 0 --> "", not expected
-  getNoteParams(){
-    return this.getNoteParamsPadded().map(x => utils.delLeftPad(x));
-  }
+  // getNoteParams(){
+  //   return this.getNoteParamsPadded().map(x => utils.delLeftPad(x));
+  // }
 
   static decrypt(v, password){
     if (!v) {
@@ -132,4 +133,5 @@ class Note{
 
 module.exports = {
   Note,
+  OwnerType,
 }

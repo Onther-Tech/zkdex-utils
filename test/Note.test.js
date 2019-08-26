@@ -1,8 +1,9 @@
-const { Note } = require('../src/Note.js')
+const { Note, OwnerType } = require('../src/Note.js')
 const { utils } = require('../src/utils.js');
 const BN = require('bn.js');
 const Web3Utils = require('web3-utils');
 const chai = require('chai');
+const assert = require('assert');
 
 chai.should();
 chai.use(require('chai-bignumber')());
@@ -10,12 +11,12 @@ chai.use(require('chai-bignumber')());
 // const { toHashed } = require('../src/noteHelper.js');
 
 // const owner = '17325c2fec23861ff5ed4ea51641d6bb883978b0';
-const owner = "53d1cadfe54ffd6b81d45c9917325c2fec23861ff5ed4ea51641d6bb883978b0";
-const value = '6';
-const type = '0';
-const viewKey='1aba488300a9d7297a315d127837be4219107c62c61966ecdf7a75431d75cc61';
-const salt = 'c517f646255d5492089b881965cbd3da';
-const acc = {
+const OWNER = "53d1cadfe54ffd6b81d45c9917325c2fec23861ff5ed4ea51641d6bb883978b0";
+const VALUE = '6';
+const TYPE = '0';
+const VIEW_KEY='1aba488300a9d7297a315d127837be4219107c62c61966ecdf7a75431d75cc61';
+const SALT = 'c517f646255d5492089b881965cbd3da';
+const ACC = {
   sk: '23308570483326979346009455655324790223',
   pubkey:
    { x:
@@ -31,30 +32,68 @@ const acc = {
   zkAddress: '17325c2fec23861ff5ed4ea51641d6bb883978b0'
 };
 
+const NOTE_HASH = '0b978ec7750e70c76c95ffd631cc705db0e5b35496dea5e6e6b0c677ea8e310d';
+
 // var note = new Note(parentOwner, parentValue, parentType, parentViewKey)
 
 // utils.zComputeWitnessCommand(note.getNoteParamsForCircuit())
 
 describe('# Note.js Test', () => {
   it('#getNoteHash() test', () => {
-    let note = new Note(owner, value, type, viewKey, salt);
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
     let result = note.getNoteHash();
-    // let raw = note.getNoteRaw();
-    // let hToHashed = toHashed(raw);
-    // console.log("helper hashed : ", hToHashed);
-    // console.log(note);
-    // console.log(note.value == new BN(value, 16).toString(16,64));
-    // console.log(note.type == new BN(type, 16).toString(16,32));
-    // console.log(note.viewKey == new BN(viewKey, 16).toString(16,64));
-    // console.log(note.salt == new BN(salt, 16).toString(16,32));
-    // console.log("Note Hash : ", result);
-    let command = utils.zComputeWitnessCommand(note.getNoteParamsForCircuit());
-    // console.log(command);
-    let exp1 = "015408440684068096143997935374484402269";
-    let exp2 = "235136800491926290460213793557526229261";
-    let uexp1 = utils.unmarshal(Web3Utils.toHex(exp1));
-    let uexp2 = utils.unmarshal(Web3Utils.toHex(exp2));
-    let expected = Web3Utils.padLeft(uexp1, 32) + uexp2;
+    // let command = utils.zComputeWitnessCommand(note.getNoteParamsForCircuit());
+    let expected = NOTE_HASH;
+    // console.log(expected);
     result.should.be.equal(expected);
+  });
+  it('#getNoteRaw().length should be 256', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let result = note.getNoteRaw().length;
+    // console.log(note.getNoteRaw());
+    let expected = 256;
+    assert.equal(result, expected);
+  });
+  it('#encrypt(), decrypt() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let encData = note.encrypt("abc");
+    let decNote = Note.decrypt(encData, "abc");
+    note.owner.should.be.equal(decNote.owner);
+  });
+  it('#isSmart() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let result = note.isSmart();
+    let expected = true;
+    result.should.be.equal(expected);
+  });
+  it('#isOwnedBy() test', () => {
+    let note = new Note(ACC.zkAddress, VALUE, TYPE, VIEW_KEY, SALT);
+    let result = note.isOwnedBy(ACC.sk);
+    let expected = true;
+    result.should.be.equal(expected);
+  });
+  it('#isNoteHash() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let result = note.isNoteHash(NOTE_HASH);
+    let expected = true;
+    result.should.be.equal(expected);
+  });
+  it('#toString() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let result = JSON.parse(note.toString()).owner;
+    let expected = note.owner;
+    result.should.be.equal(expected);
+  });
+  it('#getNoteParamsForCircuit() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let resultType = note.getNoteParamsForCircuit()[4];
+    let expected = Web3Utils.padLeft(resultType, 32);
+    resultType.should.be.equal(expected);
+  });
+  it('#getNoteParamsPadded() test', () => {
+    let note = new Note(OWNER, VALUE, TYPE, VIEW_KEY, SALT);
+    let resultOwner = note.getNoteParamsPadded()[0];
+    let expected = note.owner;
+    resultOwner.should.be.equal(expected);
   });
 })
