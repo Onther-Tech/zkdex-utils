@@ -98,6 +98,7 @@ JSON.parse(note.toString());
 //{"owner":"53d1cadfe54ffd6b81d45c9917325c2fec23861ff5ed4ea51641d6bb883978b0","value":"0000000000000000000000000000000000000000000000000000000000000006","type":"00000000000000000000000000000000","viewKey":"1aba488300a9d7297a315d127837be4219107c62c61966ecdf7a75431d75cc61","salt":"c517f646255d5492089b881965cbd3da"}
 
 note.getNoteParamsPadded()
+//[Owner, Value, Type, viewKey, salt], left 0 padded
 //Return :
 // [ '53d1cadfe54ffd6b81d45c9917325c2fec23861ff5ed4ea51641d6bb883978b0',
 //   '0000000000000000000000000000000000000000000000000000000000000006',
@@ -106,6 +107,7 @@ note.getNoteParamsPadded()
 //   'c517f646255d5492089b881965cbd3da' ]
 
 note.getNoteParamsForCircuit();
+// [owner1, owner2, value1, value2, type, viewKey1, viewKey2, salt]
 // Return :
 // [ '53d1cadfe54ffd6b81d45c9917325c2f',
 //   'ec23861ff5ed4ea51641d6bb883978b0',
