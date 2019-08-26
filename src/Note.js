@@ -81,13 +81,14 @@ class Note{
     return JSON.stringify(this);
   }
 
-  //Return : [owner1, owner2, value1, value2, type, viewKey1, viewKey2, salt]
+  //Return : [noteHash1, noteHash2, owner1, owner2, value1, value2, type, viewKey1, viewKey2, salt]
   //TODO : NoteHash should included
   getNoteParamsForCircuit() {
+    let sNoteHash = utils.pad0andSplit(this.getNoteHash());
     let sOwner = utils.pad0andSplit(this.owner);
     let sValue = utils.pad0andSplit(this.value);
     let sVK = utils.pad0andSplit(this.viewKey);
-    let paramList =  sOwner.concat(sValue, this.type, sVK, this.salt);
+    let paramList =  sNoteHash.concat(sOwner, sValue, this.type, sVK, this.salt);
     return paramList.map(x => utils.unmarshal(x));
   }
 

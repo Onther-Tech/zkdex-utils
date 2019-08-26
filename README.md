@@ -109,7 +109,9 @@ note.getNoteParamsPadded()
 note.getNoteParamsForCircuit();
 // [owner1, owner2, value1, value2, type, viewKey1, viewKey2, salt]
 // Return :
-// [ '53d1cadfe54ffd6b81d45c9917325c2f',
+// [ '0b978ec7750e70c76c95ffd631cc705d',
+//   'b0e5b35496dea5e6e6b0c677ea8e310d',
+//   '53d1cadfe54ffd6b81d45c9917325c2f',
 //   'ec23861ff5ed4ea51641d6bb883978b0',
 //   '00000000000000000000000000000000',
 //   '00000000000000000000000000000006',
